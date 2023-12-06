@@ -26,13 +26,13 @@ const postSchema: Schema = new Schema<IPost>({
             required: true        
         },
         category: {
-            type: String,
-            required: true
+            type: Types.ObjectId,
+            ref: 'categories'
         },
         comments: [
             { 
                 type: Types.ObjectId, 
-                ref: 'Comment' 
+                ref: 'comments' 
             }
         ],
         postImg: {
@@ -44,16 +44,16 @@ const postSchema: Schema = new Schema<IPost>({
         },
         author: {
             type: Types.ObjectId,
-            ref: "User"
+            ref: "users"
         },        
     }, {
         timestamps: true,
-        toJSON: {
-            virtuals: true
-        },
-        toObject: {
-            virtuals: true
-        }
+        // toJSON: {
+        //     virtuals: true
+        // },
+        // toObject: {
+        //     virtuals: true
+        // }
 })
 
 

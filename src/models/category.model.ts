@@ -17,6 +17,6 @@ const categorySchema: Schema = new Schema<ICategory>({
 })
 
 
-const Category = models.categorys || model<ICategory>("categories", categorySchema)
+const Category = models.categories || model<ICategory>("categories", categorySchema)
 
 export default Category

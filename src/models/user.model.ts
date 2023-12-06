@@ -4,7 +4,8 @@ import { Schema, models, model, Document } from "mongoose"
 export interface IUser extends Document {
     username: string,
     email: string,
-    profileImg: string
+    profileImg: string,
+    isAdmin: boolean;
 }
 
 
@@ -23,10 +24,11 @@ const userSchema: Schema = new Schema<IUser>({
             type: String,
             default: ""        
         },
-        // password: {
-        //     type: String,
-        //     required: true       
-        // },
+        isAdmin: {
+            type: Boolean,
+            required: true,
+            default: false       
+        },
     }, {
         timestamps: true,
         toJSON: {
@@ -35,6 +37,13 @@ const userSchema: Schema = new Schema<IUser>({
         toObject: {
             virtuals: true
         }
+})
+
+
+userSchema.virtual('posts', {
+    ref: 'Post',
+    foreignField: 'author',
+    localField: '_id'
 })
 
 
