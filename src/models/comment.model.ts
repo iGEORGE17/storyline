@@ -1,9 +1,11 @@
-import { Schema, models, model, Document } from "mongoose"
+import { Schema, models, model, Document, Types } from "mongoose"
+import { IPost } from "./post.model";
 
 
 export interface IComment extends Document {
     name: string;
     text: string;
+    post: IPost;
 }
 
 
@@ -15,7 +17,11 @@ const commentSchema: Schema = new Schema<IComment>({
         text: {
             type: String,
             required: true
-        }               
+        },
+        post: {
+            type: Types.ObjectId,
+            ref: 'posts'
+        }             
     }, {
         timestamps: true,
 })

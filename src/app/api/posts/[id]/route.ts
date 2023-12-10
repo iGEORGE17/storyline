@@ -6,7 +6,7 @@ export async function GET(request: NextRequest, { params }: any ) {
     try {
         const {id} = params;
         
-        const post = await Post.findById(id).populate("category")
+        const post = await Post.findById(id).populate("category").populate("comments")
 
         if(!post) {
             return NextResponse.json({ "message": "post not found" }, { status: 404 })

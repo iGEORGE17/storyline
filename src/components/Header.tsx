@@ -19,8 +19,8 @@ const Header = () => {
   }, [])
 
   return (
-    <header className="fixed min-w-full z-30">
-      <div className="navbar bg-base-100 px-20">
+    <header className="fixed min-w-full z-30 bg-base-100">
+      <div className="navbar  px-20">
     <div className="flex-1">
       <a className="text-2xl font-bold"><span className="text-orange-500 ">Story</span>Line</a>
     </div>
@@ -65,10 +65,10 @@ const Header = () => {
       }
     </div>
     </div>
-    <div className="bg-base-200 min-w-full px-20 flex justify-between items-center">
+    <div className="min-w-full px-20 flex justify-between items-center bg-green-950 text-white ">
     <ul className="menu menu-vertical lg:menu-horizontal">
       {
-        cats?.map((cat: string) => <li key={cat?._id}><a className="text-bold uppercase">{cat?.name}</a></li>)
+        cats?.map((cat: string) => <li key={cat?._id}><p className="text-bold uppercase">{cat?.name}</p></li>)
       }
     </ul>
     <ul className="menu menu-vertical lg:menu-horizontal">
