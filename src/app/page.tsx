@@ -87,7 +87,7 @@ export default function Home() {
                 <p className=' text-gray-400'>#{post?.tags}</p>
                 <div className="flex items-center justify-center space-x-3">
                   <div className="flex items-center justify-center space-x-1">
-                    <LiaCommentSolid className="text-xl"/><span className="text-sm">22</span>                      
+                    <LiaCommentSolid className="text-xl"/><span className="text-sm">{post?.comments.length}</span>                      
                   </div>
                   <div className="flex items-center justify-center space-x-1 text-gray-400">
                     <VscEye className="text-sm"/><span className="text-sm">33.5k</span>                      

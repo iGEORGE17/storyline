@@ -12,6 +12,7 @@ const PostCreatePage = () => {
     const [text, setText] = useState("")
     const [tags, setTags] = useState("")
     const [category, setCategory] = useState("")
+    const [image, setImage] = useState(null);
 
     const [cats, setCats] = useState([])
 
@@ -23,6 +24,20 @@ const PostCreatePage = () => {
   useEffect(() => {
     fetchCategories()
   }, [])
+
+
+  const handleImageUpload = async (e) => {
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+
+    const response = await fetch('/api/posts/uploadImage', {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await response.json();
+    setImage(data.imageUrl);
+  };
+
 
 
 
@@ -57,14 +72,18 @@ const PostCreatePage = () => {
   return (
     <section className='min-h-screen flex flex-col justify-center min-w-full'>
         <div className="mx-10"> 
-            <div className="flex space-x-5">
-                <div className="w-9/12 border">
-                    <form className='' onSubmit={handleSubmit} method='POST'>
+            <div className="flex space-x-5">lm
+                <div className="w-9/12 border p-5">
+                    <form className='h-[400px] overflow-y-scroll' onSubmit={handleSubmit} method='POST'>
                         <div className="mb-3">
                             <input type="text" placeholder="Title" name="title" className="input input-bordered w-full" 
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             />
+                        </div>
+                        <div className="mb-3">
+                            <input type="file" className="file-input file-input-bordered w-full" accept="image/*" onChange={handleImageUpload}/> 
+                            {image && <img src={image} alt="Uploaded" />}                           
                         </div>
                         <div className="mb-3">
                             <select className="select select-bordered w-full" value={category} defaultValue="Select Category"

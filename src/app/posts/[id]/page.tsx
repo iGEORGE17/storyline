@@ -14,18 +14,10 @@ const PostDetailPage = ({params}: any) => {
     const fetchPost = async() => {
         const response = await axios.get(`http://localhost:3000/api/posts/${id}`)
         console.log(response?.data)
-
         setPost(response.data?.post)
-
     }  
 
 
-// //   fetch comments
-//       const fetchComments = async () => {
-//         const response = await axios.get("http://localhost:3000/api/comments")
-//         console.log(response)
-//         setComments(response?.data?.comment)
-//   }
 
     const handleSubmit = async (e:FormEvent) => {
         e.preventDefault();
@@ -94,10 +86,10 @@ const PostDetailPage = ({params}: any) => {
                             </div>
 
                             <ul>
-                                {post.comments?.map((comment):any => (
+                                {post.comments?.map((comment: any) => (
                                 <li key={comment._id}>
+                                    <p>{comment?.name}</p>
                                     <p>{comment.text}</p>
-                                    <p>Comment by: {comment?.name}</p>
                                 </li>
                                 ))}
                             </ul>
